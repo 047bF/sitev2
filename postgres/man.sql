@@ -208,10 +208,10 @@ RETURN 1;
 end
 $$ LANGUAGE plpgsql;
 
-	create or replace FUNCTION insert_mod_histories(f_in_id in input.in_id%TYPE)
+	create or replace FUNCTION insert_mod_histories(f_in_id in input.in_id%TYPE) --под вопросом
 		RETURNS integer AS $$
 BEGIN 
-insert into model_histories (mod_site_uniq,brand_brand_id,mod_mod_id, price,sale_price,sizess,site_site_id,val_val_id,insert_date,navi_date,avail_avail_id,number_history)
+insert into model_histories (mod_site_uniq,brand_brand_id,mod_mod_id, price,sale_price,sizess,site_site_id,val_val_id,insert_date,avail_avail_id)
 select	SPLIT_PART(i.in_raw,'|',1) as mod_uniq,
 		b.brand_id,
 		m.mod_id,
@@ -222,9 +222,7 @@ select	SPLIT_PART(i.in_raw,'|',1) as mod_uniq,
 		s.site_id as site,
 		s.val_val_id as valuta,
 		i.navi_date as insert_date,
-		now() as navi_date,
-		1 as available,
-		1 as history
+		1 as available
 from input i 
 	join brands b on b.brand_name = SPLIT_PART(i.in_raw,'|',2)
 	join models m on m.mod_input = SPLIT_PART(i.in_raw,'|',3) and m.brand_brand_id=b.brand_id
@@ -245,11 +243,11 @@ if f_limit < 1 or f_limit > 10000 then
 end if;
 for row in 1..f_limit loop
 	update input
-	set brand_scan = insert_fun.result
+	set brand_smst_id = insert_fun.result
 	from (
 		select i.in_id,get_brand_from_input(i.in_id) as result
 		from input i 
-		where i.brand_scan = 0
+		where i.brand_smst_id = 0
 		limit 1 
 		) as insert_fun
 	where input.in_id=insert_fun.in_id;
