@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-import datetime
+import time
 import requests
 from bs4 import BeautifulSoup
 import os
@@ -29,10 +29,11 @@ def check_for_sizes(text):
 	return avalible is not None
 
 #перед стартом удаляем старый файл с экспортом
-os.remove('./asos_prod_export.log')
-os.remove('./asos_error_export.txt')
+#os.remove('./asos_prod_export.log')
+#os.remove('./asos_error_export.txt')
+
 checker = []
-with open('./asos_error_export.txt', 'a') as error_export: #вывод из else
+with open('./asos_error_export'+time.strftime("%Y%m%d-%H")+'.log', 'a') as error_export: #вывод из else
 	with open('./asos_prod_export.log', 'a') as export_file: #основой вывод всей инфы
 		while True:
 			with open('./asos_page_export.log', 'r') as input_file: #чтение из base всех ссылок
@@ -61,10 +62,15 @@ with open('./asos_error_export.txt', 'a') as error_export: #вывод из else
 							error_export.write(prod_id)
 							error_export.write(';')
 				except Exception:
-					print(datetime.datetime.now(),":ERROR:", link)
-					error_export.write(datetime.datetime.now())
+					print(time.strftime("%Y%m%d-%H%M%S"),":ERROR:", link)
+					print(ValueError)
+					error_export.write(time.strftime("%Y%m%d-%H%M%S"))
 					error_export.write(':ERROR:')
 					error_export.write(page)
+					error_export.write(sys.exc_info()[0])
+					error_export.write('/n')
+					error_export.write(sys.exc_info()[1])
+					error_export.write(sys.exc_info()[2])
 					error_export.write('/n')
 				else:
 					print(datetime.datetime.now(),'::PASS::All pages read')

@@ -76,8 +76,8 @@ CREATE TABLE public.model_histories
 	mod_mod_id integer NOT NULL REFERENCES models(mod_id),
     brand_brand_id integer NOT NULL REFERENCES brands(brand_id),
 	number_history integer DEFAULT 1,
- 	navi_date date DEFAULT current_timestamp,
- 	insert_date date NOT NULL,
+ 	navi_date timestamp DEFAULT current_timestamp,
+ 	insert_date timestamp NOT NULL,
  	avail_avail_id integer DEFAULT 1 REFERENCES available(avail_id),
  	site_site_id integer NOT NULL REFERENCES sites(site_id),
     price numeric(6,2) NOT NULL,
@@ -115,7 +115,7 @@ CREATE TABLE public.size_histories
 	size_size_id integer NOT NULL REFERENCES sizes(size_id),
 	site_site_id integer NOT NULL REFERENCES sites(site_id),
 	avail_avail_id integer DEFAULT 1 REFERENCES available(avail_id),
-	navi_date date DEFAULT current_timestamp,
+	navi_date timestamp DEFAULT current_timestamp,
 	CONSTRAINT mod_size_site_uniq UNIQUE (mod_mod_id,size_size_id,site_site_id)
 );
 
@@ -144,7 +144,7 @@ CREATE TABLE public.site_import_links
 CREATE TABLE public.input
 (	in_id bigserial,
 	in_raw varchar(500) NOT NULL,
-	navi_date date DEFAULT current_timestamp,
+	navi_date timestamp DEFAULT current_timestamp,
 	navi_user varchar(20) NOT NULL,
 	in_pic varchar(100),
 	smst_smst_id integer REFERENCES statuses(smst_id),

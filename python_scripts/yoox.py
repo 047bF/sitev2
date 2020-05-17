@@ -3,7 +3,7 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 import os
-import datetime
+import time
 from db_actions import insert_input
 
 session = requests.session()
@@ -39,7 +39,7 @@ def prod_not_none(text):
 os.remove('./yoox_prod_export.log')
 pagenum = 1
 links_exp = {}
-with open('./yoox_error_export.txt', 'a') as error_export: #вывод из else
+with open('./yoox_error_export'+time.strftime("%Y%m%d-%H")+'.txt', 'a') as error_export: #вывод из else
 	with open('./yoox_prod_export.log', 'a') as export_file: #основой вывод всей инфы
 		while True:
 			checker = []
@@ -83,9 +83,9 @@ with open('./yoox_error_export.txt', 'a') as error_export: #вывод из else
 					print('cya')
 					pagenum = 1
 			except Exception:
-				print(datetime.datetime.now()," :ERROR: ", pagenum)
+				print(time.strftime("%Y%m%d-%H%M%S")," :ERROR: ", pagenum)
 				print(items)
-				error_export.write(datetime.datetime.now())
+				error_export.write(time.strftime("%Y%m%d-%H%M%S"))
 				error_export.write(':ERROR:')
 				error_export.write(page)
 				error_export.write('/n')

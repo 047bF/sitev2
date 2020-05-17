@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-import datetime
+import time
 import requests
 from bs4 import BeautifulSoup
-from time import sleep
 from urllib.parse import urlparse
 import os
 # setting session setup
@@ -60,9 +59,9 @@ with open('./asos_page_export.log', 'a', encoding='utf-8') as output_file:
 				#ADDING OF SEARCHING SALE LINKS
 				sleep(60)
 		except Exception:
-			print(datetime.datetime.now(),":ERROR:")
+			print(time.strftime("%Y%m%d-%H%M%S"),":ERROR:")
 		else:
-			print(datetime.datetime.now(), '::PASS::', pagenum)
+			print(time.strftime("%Y%m%d-%H%M%S"), '::PASS::', pagenum)
 		finally:
 			pagenum += 1
 			#print(links_exp)
