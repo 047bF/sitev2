@@ -1,0 +1,9 @@
+ymalApiUrl: "/api/product/search/v2/recommendations/",
+      recsApiUrl: "/api/customer/recommendation/v3/customer/me/recommendations",
+      locationServiceUrl: "#{LOCATION_SERVICE_URL}",
+      fullProductUrl: "/api/product/catalogue/v3/products/",
+      stockPriceUrl: "/api/product/catalogue/v3/stockprice?productIds=",
+      recommendationsApiVersion: "v2",
+      buyTheLookApiUrl: "/api/product/catalogue/v3/productgroups/ctl/",
+      deliveryApiEndpoint: "https://www.asos.com/ru/оплата-и-доставка/delivery/",
+      deliveryOptionsApiEndpoint: "/api/commerce/deliveryoptions/v2/countries"
