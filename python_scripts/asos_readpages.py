@@ -33,7 +33,7 @@ def check_for_sizes(text):
 #os.remove('./asos_error_export.txt')
 
 checker = []
-with open('./asos_error_export'+time.strftime("%Y%m%d-%H")+'.log', 'a') as error_export: #вывод из else
+with open('./logs/asos_error_export'+time.strftime("%Y%m%d-%H")+'.log', 'a') as error_export: #вывод из else
 	with open('./asos_prod_export.log', 'a') as export_file: #основой вывод всей инфы
 		while True:
 			with open('./asos_page_export.log', 'r') as input_file: #чтение из base всех ссылок

@@ -39,7 +39,7 @@ def prod_not_none(text):
 os.remove('./yoox_prod_export.log')
 pagenum = 1
 links_exp = {}
-with open('./yoox_error_export'+time.strftime("%Y%m%d-%H")+'.txt', 'a') as error_export: #вывод из else
+with open('./logs/yoox_error_export'+time.strftime("%Y%m%d-%H")+'.log', 'a') as error_export: #вывод из else
 	with open('./yoox_prod_export.log', 'a') as export_file: #основой вывод всей инфы
 		while True:
 			checker = []
@@ -87,7 +87,7 @@ with open('./yoox_error_export'+time.strftime("%Y%m%d-%H")+'.txt', 'a') as error
 				print(items)
 				error_export.write(time.strftime("%Y%m%d-%H%M%S"))
 				error_export.write(':ERROR:')
-				error_export.write(page)
+				error_export.write(pagenu)
 				error_export.write('/n')
 			else:
 				print(datetime.datetime.now(), '::PASS::', pagenum)

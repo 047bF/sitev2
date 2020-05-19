@@ -50,7 +50,7 @@ with open('./asos_page_export.log', 'a', encoding='utf-8') as output_file:
 						links_exp[id_prod] = link_prod
 						write_link(output_file, link_prod)
 			else:
-				with open('./asos_error_export.txt', 'r') as error_read: #after reading all pages read of error pages
+				with open('./logs/asos_error_export.log', 'r') as error_read: #after reading all pages read of error pages
 					errors = error_read.read().split(';')
 					print('Deleting from dict:', errors)
 					for error in errors:
